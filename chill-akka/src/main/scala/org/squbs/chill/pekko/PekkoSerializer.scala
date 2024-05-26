@@ -41,7 +41,7 @@ import org.squbs.chill.config.ConfiguredInstantiator
  *
  * Kryo is not thread-safe so we use an object pool to avoid over allocating.
  */
-class AkkaSerializer(system: ExtendedActorSystem) extends Serializer {
+class PekkoSerializer(system: ExtendedActorSystem) extends Serializer {
 
   /**
    * You can override this to easily change your serializers. If you do so, make sure to change the config to
@@ -75,7 +75,7 @@ class AkkaSerializer(system: ExtendedActorSystem) extends Serializer {
  * ConfiguredInstantiator static methods for how to build up a correct Config with your reflected or
  * serialized instantiators.
  */
-class ConfiguredAkkaSerializer(system: ExtendedActorSystem) extends AkkaSerializer(system) {
+class ConfiguredAkkaSerializer(system: ExtendedActorSystem) extends PekkoSerializer(system) {
   override def kryoInstantiator: KryoInstantiator =
     new ConfiguredInstantiator(new PekkoConfig(system.settings.config))
       .withRegistrar(new ActorRefSerializer(system))

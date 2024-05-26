@@ -50,7 +50,7 @@ class PekkoTests extends AnyWordSpec with Matchers {
   // Get the Serialization Extension
   val serialization: Serialization = SerializationExtension(system)
 
-  "AkkaSerializer" should {
+  "PekkoSerializer" should {
     "be selected for tuples" in {
       // Find the Serializer for it
       val serializer = serialization.findSerializerFor((1, 2, 3))
