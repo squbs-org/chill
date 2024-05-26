@@ -47,7 +47,7 @@ The KryoPool is a thread-safe way to share Kryo instances and temporary output b
 ### Chill Config
 
 Hadoop, Storm, and Akka all use a configuration that is basically equivalent to a `Map[String,
-String]`. The `com.twitter.chill.config` package makes it easy to build up `KryoInstantiator`
+String]`. The `org.squbs.chill.config` package makes it easy to build up `KryoInstantiator`
 instances given a Config instance, which is an abstract class acting as a thin wrapper over
 whatever configuration data the system, such as Hadoop, Storm or Akka, might give.
 
@@ -88,7 +88,7 @@ using Kryo serialization internally, but the MeatLocker itself is Java serializa
 The MeatLocker allows you to box Kryo-serializable objects and deserialize them lazily on the first call to `get`:
 
 ```scala
-import com.twitter.chill.MeatLocker
+import org.squbs.chill.MeatLocker
 
 val boxedItem = MeatLocker(someItem)
 
@@ -127,20 +127,20 @@ only scala serializers).  Chill provides support for singletons, scala Objects a
 KryoInjection is an injection from `Any` to `Array[Byte]`. To serialize using it:
 
 ```scala
-import com.twitter.chill.KryoInjection
+import org.squbs.chill.KryoInjection
 
 val bytes:  Array[Byte]    = KryoInjection(someItem)
 val tryDecode: scala.util.Try[Any] = KryoInjection.invert(bytes)
 ```
 
-KryoInjection can be composed with Bijections and Injections from `com.twitter.bijection`.
+KryoInjection can be composed with Bijections and Injections from `org.squbs.bijection`.
 
 ## Chill-Akka
 
 To use, add a key to your config like:
 ```
     akka.actor.serializers {
-      kryo = "com.twitter.chill.akka.AkkaSerializer"
+      kryo = "org.squbs.chill.akka.AkkaSerializer"
     }
 ```
 
@@ -194,11 +194,11 @@ A list of contributors to the project can be found here: [Contributors](https://
 
 ## Maven
 
-Chill modules are available on Maven Central. The current groupid and version for all modules is, respectively, `"com.twitter"` and  `0.10.0`. Each scala project is published for `2.11`, `2.12` and `2.13`. Search [search.maven.org](http://search.maven.org/#search%7Cga%7C1%7Cchill) when in doubt.
+Chill modules are available on Maven Central. The current groupid and version for all modules is, respectively, `"org.squbs"` and  `0.10.0`. Each scala project is published for `2.11`, `2.12` and `2.13`. Search [search.maven.org](http://search.maven.org/#search%7Cga%7C1%7Cchill) when in doubt.
 
 `chill-scala` is not published separately; to use it, reference `chill`. To add the dependency to your project using SBT:
 
-    "com.twitter" %% "chill" % "0.10.0"
+    "org.squbs" %% "chill" % "0.10.0"
 
 ## Authors
 
@@ -208,7 +208,7 @@ Chill modules are available on Maven Central. The current groupid and version fo
 
 ## License
 
-Copyright 2012 Twitter, Inc.
+
 
 Licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 

@@ -1,5 +1,5 @@
 syntax = "proto3";
-package com.twitter.chill.protobuf;
+package org.squbs.chill.protobuf;
 
 message FatigueCount {
   int64 target_id = 1;

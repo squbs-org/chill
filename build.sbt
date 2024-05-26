@@ -18,7 +18,7 @@ def scalaVersionSpecificFolders(srcBaseDir: java.io.File, scalaVersion: String):
   }
 
 val sharedSettings = Seq(
-  organization := "com.twitter",
+  organization := "org.squbs",
   scalaVersion := "2.11.12",
   crossScalaVersions := Seq("2.11.12", "2.12.17", "2.13.8"),
   scalacOptions ++= Seq("-unchecked", "-deprecation"),
@@ -56,7 +56,7 @@ val sharedSettings = Seq(
     "com.esotericsoftware" % "kryo-shaded" % kryoVersion
   ),
   Test / parallelExecution := true,
-  pomExtra := <url>https://github.com/twitter/chill</url>
+  pomExtra := <url>https://github.com/squbs-org/chill</url>
         <licenses>
       <license>
       <name>Apache 2</name>
@@ -135,26 +135,26 @@ def youngestForwardCompatible(subProj: String) =
     .filterNot(unreleasedModules.contains)
     .map { s =>
       if (javaOnly.contains(s))
-        "com.twitter" % ("chill-" + s) % binaryCompatVersion
+        "org.squbs" % ("chill-" + s) % binaryCompatVersion
       else
-        "com.twitter" %% ("chill-" + s) % binaryCompatVersion
+        "org.squbs" %% ("chill-" + s) % binaryCompatVersion
     }
 
 val ignoredABIProblems = {
   import com.typesafe.tools.mima.core._
   import com.typesafe.tools.mima.core.ProblemFilters._
   Seq(
-    exclude[MissingTypesProblem]("com.twitter.chill.storm.BlizzardKryoFactory"),
-    exclude[MissingTypesProblem]("com.twitter.chill.InnerClosureFinder"),
-    exclude[IncompatibleResultTypeProblem]("com.twitter.chill.InnerClosureFinder.visitMethod"),
-    exclude[IncompatibleResultTypeProblem]("com.twitter.chill.FieldAccessFinder.visitMethod"),
-    exclude[MissingClassProblem]("com.twitter.chill.FieldAccessFinder"),
-    exclude[MissingTypesProblem]("com.twitter.chill.FieldAccessFinder"),
-    exclude[DirectMissingMethodProblem]("com.twitter.chill.FieldAccessFinder.this"),
-    exclude[IncompatibleResultTypeProblem]("com.twitter.chill.Tuple1*Serializer.read"),
-    exclude[IncompatibleMethTypeProblem]("com.twitter.chill.Tuple1*Serializer.write"),
-    exclude[IncompatibleResultTypeProblem]("com.twitter.chill.Tuple2*Serializer.read"),
-    exclude[IncompatibleMethTypeProblem]("com.twitter.chill.Tuple2*Serializer.write")
+    exclude[MissingTypesProblem]("org.squbs.chill.storm.BlizzardKryoFactory"),
+    exclude[MissingTypesProblem]("org.squbs.chill.InnerClosureFinder"),
+    exclude[IncompatibleResultTypeProblem]("org.squbs.chill.InnerClosureFinder.visitMethod"),
+    exclude[IncompatibleResultTypeProblem]("org.squbs.chill.FieldAccessFinder.visitMethod"),
+    exclude[MissingClassProblem]("org.squbs.chill.FieldAccessFinder"),
+    exclude[MissingTypesProblem]("org.squbs.chill.FieldAccessFinder"),
+    exclude[DirectMissingMethodProblem]("org.squbs.chill.FieldAccessFinder.this"),
+    exclude[IncompatibleResultTypeProblem]("org.squbs.chill.Tuple1*Serializer.read"),
+    exclude[IncompatibleMethTypeProblem]("org.squbs.chill.Tuple1*Serializer.write"),
+    exclude[IncompatibleResultTypeProblem]("org.squbs.chill.Tuple2*Serializer.read"),
+    exclude[IncompatibleMethTypeProblem]("org.squbs.chill.Tuple2*Serializer.write")
   )
 }
 
@@ -180,7 +180,7 @@ lazy val chill = Project(
 ).settings(sharedSettings)
   .settings(
     name := "chill",
-    mimaPreviousArtifacts := Set("com.twitter" %% "chill" % binaryCompatVersion),
+    mimaPreviousArtifacts := Set("org.squbs" %% "chill" % binaryCompatVersion),
     mimaBinaryIssueFilters ++= ignoredABIProblems,
     libraryDependencies += "org.apache.xbean" % "xbean-asm7-shaded" % asmVersion
   )

@@ -8,7 +8,7 @@ import java.util.Date
 import java.text.SimpleDateFormat
 
 val header = """/*
-Copyright 2012 Twitter, Inc.
+
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-package com.twitter.chill
+package org.squbs.chill
 
 import _root_.java.io.Serializable
 
@@ -208,7 +208,7 @@ val scalaVersions = ("scala-2.10", "2.10") :: ("scala-2.11+", "2.11") :: Nil
 scalaVersions.foreach { case (dir, version) =>
   ///////////////////////////////////////////////////////////////////
   // Actually output the code here:
-  val file = new java.io.File(s"../chill-scala/src/main/$dir/com/twitter/chill/TupleSerializers.scala")
+  val file = new java.io.File(s"../chill-scala/src/main/$dir/org/squbs/chill/TupleSerializers.scala")
   val writer = new PrintWriter(file)
 
   writer.println(header.format(timestamp))

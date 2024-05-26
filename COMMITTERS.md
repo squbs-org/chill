@@ -1,6 +1,5 @@
 # Committers
 
-Please see our [Project Governance](https://github.com/twitter/analytics-infra-governance) page for more details.
 
 ## Active
 
