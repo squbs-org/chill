@@ -36,7 +36,7 @@ class PekkoTests extends AnyWordSpec with Matchers {
   val system: ActorSystem = ActorSystem(
     "example",
     ConfigFactory.parseString("""
-    pekko.actor.serializers {
+    org.apache.pekko.actor.serializers {
       kryo = "org.squbs.chill.pekko.PekkoSerializer"
     }
 
