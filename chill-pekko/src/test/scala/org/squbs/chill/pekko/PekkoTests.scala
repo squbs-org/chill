@@ -54,14 +54,14 @@ class PekkoTests extends AnyWordSpec with Matchers {
     "be selected for tuples" in {
       // Find the Serializer for it
       val serializer = serialization.findSerializerFor((1, 2, 3))
-      serializer.getClass.equals(classOf[AkkaSerializer]) should equal(true)
+      serializer.getClass.equals(classOf[PekkoSerializer]) should equal(true)
     }
 
     def actorRef(i: Int) = system.actorOf(IncActor.props, "incActor" + i)
 
     "be selected for ActorRef" in {
       val serializer = serialization.findSerializerFor(actorRef(1))
-      serializer.getClass.equals(classOf[AkkaSerializer]) should equal(true)
+      serializer.getClass.equals(classOf[PekkoSerializer]) should equal(true)
     }
 
     "serialize and deserialize ActorRef successfully" in {

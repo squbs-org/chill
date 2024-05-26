@@ -7,7 +7,7 @@
 
 Extensions for the [Kryo serialization library](https://github.com/EsotericSoftware/kryo) including
 serializers and a set of classes to ease configuration of Kryo in systems like Hadoop, Storm,
-Akka, etc.
+Pekko, etc.
 
 ### Compatibility
 
@@ -46,10 +46,10 @@ The KryoPool is a thread-safe way to share Kryo instances and temporary output b
 
 ### Chill Config
 
-Hadoop, Storm, and Akka all use a configuration that is basically equivalent to a `Map[String,
+Hadoop, Storm, and Pekko all use a configuration that is basically equivalent to a `Map[String,
 String]`. The `org.squbs.chill.config` package makes it easy to build up `KryoInstantiator`
 instances given a Config instance, which is an abstract class acting as a thin wrapper over
-whatever configuration data the system, such as Hadoop, Storm or Akka, might give.
+whatever configuration data the system, such as Hadoop, Storm or Pekko, might give.
 
 To configure a KryoInstantiator use `ConfiguredInstantiator` with either reflection,
 which takes a class name and instantiates that KryoInstantiator, or an instance of KryoInstantiator
@@ -135,7 +135,7 @@ val tryDecode: scala.util.Try[Any] = KryoInjection.invert(bytes)
 
 KryoInjection can be composed with Bijections and Injections from `org.squbs.bijection`.
 
-## Chill-Akka
+## Chill-Pekko
 
 To use, add a key to your config like:
 ```
@@ -166,8 +166,8 @@ pekko.actor {
 ```
 
 
-If you want to use the `chill.config.ConfiguredInstantiator` see `ConfiguredAkkaSerializer`
-otherwise, subclass `AkkaSerializer` and override `kryoInstantiator` to control how the `Kryo`
+If you want to use the `chill.config.ConfiguredInstantiator` see `ConfiguredPekkoSerializer`
+otherwise, subclass `PekkoSerializer` and override `kryoInstantiator` to control how the `Kryo`
 object is created.
 
 ## Documentation

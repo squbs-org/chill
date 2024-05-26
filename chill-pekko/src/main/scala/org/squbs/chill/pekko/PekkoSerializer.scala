@@ -75,7 +75,7 @@ class PekkoSerializer(system: ExtendedActorSystem) extends Serializer {
  * ConfiguredInstantiator static methods for how to build up a correct Config with your reflected or
  * serialized instantiators.
  */
-class ConfiguredAkkaSerializer(system: ExtendedActorSystem) extends PekkoSerializer(system) {
+class ConfiguredPekkoSerializer(system: ExtendedActorSystem) extends PekkoSerializer(system) {
   override def kryoInstantiator: KryoInstantiator =
     new ConfiguredInstantiator(new PekkoConfig(system.settings.config))
       .withRegistrar(new ActorRefSerializer(system))
