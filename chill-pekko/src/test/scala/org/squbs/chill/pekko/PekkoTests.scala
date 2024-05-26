@@ -40,7 +40,7 @@ class PekkoTests extends AnyWordSpec with Matchers {
       kryo = "org.squbs.chill.pekko.PekkoSerializer"
     }
 
-    pekko.actor.serialization-bindings {
+    org.apache.pekko.actor.serialization-bindings {
       "scala.Product" = kryo
       "org.apache.pekko.actor.ActorRef" = kryo
     }
