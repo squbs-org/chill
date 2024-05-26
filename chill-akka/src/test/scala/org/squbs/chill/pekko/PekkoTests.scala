@@ -14,15 +14,15 @@ See the License for the specific language governing permissions and
 limitations under the License.
  */
 
-package org.squbs.chill.akka
+package org.squbs.chill.pekko
 
-import akka.actor.{Actor, ActorRef, ActorSystem, Props}
-import akka.serialization._
+import org.apache.pekko.actor.{Actor, ActorRef, ActorSystem, Props}
+import org.apache.pekko.serialization._
 import com.typesafe.config.ConfigFactory
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
-class AkkaTests extends AnyWordSpec with Matchers {
+class PekkoTests extends AnyWordSpec with Matchers {
   object IncActor {
     def props: Props = Props(IncActor())
   }
@@ -36,13 +36,13 @@ class AkkaTests extends AnyWordSpec with Matchers {
   val system: ActorSystem = ActorSystem(
     "example",
     ConfigFactory.parseString("""
-    akka.actor.serializers {
-      kryo = "org.squbs.chill.akka.AkkaSerializer"
+    pekko.actor.serializers {
+      kryo = "org.squbs.chill.pekko.PekkoSerializer"
     }
 
-    akka.actor.serialization-bindings {
+    pekko.actor.serialization-bindings {
       "scala.Product" = kryo
-      "akka.actor.ActorRef" = kryo
+      "pekko.actor.ActorRef" = kryo
     }
 """)
   )

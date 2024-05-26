@@ -14,10 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
  */
 
-package org.squbs.chill.akka
+package org.squbs.chill.pekko
 
-import akka.actor.ExtendedActorSystem
-import akka.serialization.Serializer
+import org.apache.pekko.actor.ExtendedActorSystem
+import org.apache.pekko.serialization.Serializer
 
 import org.squbs.chill._
 import org.squbs.chill.config.ConfiguredInstantiator
@@ -27,14 +27,14 @@ import org.squbs.chill.config.ConfiguredInstantiator
  *
  * {{{
  *
- *     akka.actor.serializers {
- *       kryo = "org.squbs.chill.akka.AkkaSerializer"
+ *     pekko.actor.serializers {
+ *       kryo = "org.squbs.chill.pekko.PekkoSerializer"
  *     }
  * }}}
  *
  * Then for the super-classes of all your message types, for instance, scala.Product, write:
  * {{{
- *     akka.actor.serialization-bindings {
+ *     pekko.actor.serialization-bindings {
  *       "scala.Product" = kryo
  *     }
  * }}}
@@ -77,6 +77,6 @@ class AkkaSerializer(system: ExtendedActorSystem) extends Serializer {
  */
 class ConfiguredAkkaSerializer(system: ExtendedActorSystem) extends AkkaSerializer(system) {
   override def kryoInstantiator: KryoInstantiator =
-    new ConfiguredInstantiator(new AkkaConfig(system.settings.config))
+    new ConfiguredInstantiator(new PekkoConfig(system.settings.config))
       .withRegistrar(new ActorRefSerializer(system))
 }
