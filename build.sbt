@@ -19,13 +19,13 @@ def scalaVersionSpecificFolders(srcBaseDir: java.io.File, scalaVersion: String):
 
 val sharedSettings = Seq(
   organization := "org.squbs",
-  scalaVersion := "2.12.17",
-  crossScalaVersions := Seq("2.12.17", "2.13.8"),
+  scalaVersion := "2.12.15",
+  crossScalaVersions := Seq("2.12.15", "2.13.7"),
   scalacOptions ++= Seq("-unchecked", "-deprecation"),
   scalacOptions ++= {
     scalaVersion.value match {
       case v if v.startsWith("2.11") => Seq("-Ywarn-unused", "-Ywarn-unused-import", "-target:jvm-1.8")
-      case _                         => Seq("-Ywarn-unused", "-release", "8")
+      case _                         => Seq("-Ywarn-unused")
     }
   },
   // Twitter Hadoop needs this, sorry 1.7 fans
